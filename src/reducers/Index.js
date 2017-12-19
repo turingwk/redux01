@@ -1,6 +1,6 @@
 'use strict';
 
-import {combineReducers} from 'redux';
+import {combineReducers} from 'redux-immutable';
 import loginIn from './Login';
 
 const rootReducer = combineReducers({
