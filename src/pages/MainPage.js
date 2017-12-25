@@ -36,7 +36,7 @@ class MainPage extends BaseComponent {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
         <Text>{'姓名:' + name + '\n年龄:' + age}</Text>
         <Text>{tips}</Text>
-        <TouchableOpacity style={{ backgroundColor: '#FF0000' }} onPress={this.handleLogin.bind(this)}>
+        <TouchableOpacity style={{ backgroundColor: '#FF0000' }} onPress={this.props.loginAction.bind(this)}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: 100, height: 50 }}>
             <Text style={{ color: '#FFFFFF', fontSize: 20 }}>登录</Text>
           </View>
@@ -49,9 +49,9 @@ class MainPage extends BaseComponent {
       </View>
     );
   }
-  handleLogin() {
-    this.props.dispatch(doLogin());
-  }
+  // handleLogin() {
+  //   this.props.dispatch(doLogin());
+  // }
 
   handleLoginSuccess() {
     this.props.dispatch((loginSuccess(true, {
@@ -69,10 +69,16 @@ function select(state) {
   }
 }
 
+function mapDispatchProps(dispatch){
+  return {
+      loginAction:()=>dispatch(doLogin())
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 });
 
-export default connect(select)(MainPage);
+export default connect(select, mapDispatchProps)(MainPage);
